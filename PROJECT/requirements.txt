@@ -1,0 +1,6 @@
+python 3.7.0 (check py command: python --version)
+pip --default-timeout=1000 install tensorflow==2.0
+pip --default-timeout=1000 install setuptools==41.0.0  
+pip --default-timeout=1000 install keras==2.3.0
+pip --default-timeout=1000 install pandas==1.0.0
+python -m pip install Pillow

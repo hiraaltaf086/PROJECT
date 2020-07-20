@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container" >
+    <table class="table table-hover ">
+        <thead>
+        {% if not user.is_staff%}
+        <tr>
+              <th> </th>
+              <th> </th>
+              <th> </th>
+              <th> </th>
+              <th><a href="{% url 'eyesion:upload' %} " class="btn btn-primary" role="button">Upload New</a></th>
+            </tr>
+        {% endif %}
+            <tr>
+              <th>Image Name</th>
+              <th>Image width</th>
+              <th>Image Height</th>
+              <th>Uploaded at</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for image in images %}
+         <tr>
+             <td>{{image.Image.name}}</td>
+             <td>{{image.Image.width}}</td>
+             <td>{{image.Image.height}}</td>
+             <td>{{image.uploaded_at}}</td>
+
+            <td ><a href="{% url 'eyesion:details' image.id %} " class="btn btn-info" role="button">View Details</a></td>
+         </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+
+    {% if is_paginated %}
+        {% include "./Pagination.html" %}
+    {% endif %}
+
+</div>
+
+    {% if not images%}
+        <p class="bg-danger">No Images uploaded.</p>
+        {% if not user.is_staff%}
+        <a href="{% url 'eyesion:upload'  %} " class="btn btn-info" role="button">Upload Now</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
